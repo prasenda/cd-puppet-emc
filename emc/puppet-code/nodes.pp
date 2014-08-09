@@ -1,4 +1,4 @@
-# edit this file to fit your network and service
+# edit this file
 
 node deployment-param  {
     $tomcat-install-path = "/opt/"
@@ -11,9 +11,9 @@ node deployment-param  {
 }
 
 node 'ip-10-1-134-144.ec2.internal' inherits  deployment-param {
-    #include mysql-dc::mysql-server
-    #include tomcat6
-    #include rest-extract 
+    include mysql-dc::mysql-server
+    include tomcat6
+    include rest-extract 
     include httpd
 }
 
