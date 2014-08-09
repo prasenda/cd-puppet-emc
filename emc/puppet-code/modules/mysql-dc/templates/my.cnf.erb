@@ -1,0 +1,16 @@
+# basic my.cnf for Datacloud install of mysql version <%= mysql_version %>
+
+[mysqld]
+
+socket=/var/lib/mysql/mysql.sock
+<% if has_variable?("mysql_server_port") then -%>
+port=<%= mysql_server_port %>
+<% end -%>
+
+[client]
+
+socket=/var/lib/mysql/mysql.sock
+<% if has_variable?("mysql_server_port") then -%>
+port=<%= mysql_server_port %>
+<% end -%>
+
