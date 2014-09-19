@@ -1,0 +1,19 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /root/.jenkins/jobs/deploy-rest-extract/workspace
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson1797699548531501577.sh
++ sudo rm -f /etc/puppet/manifests/site.pp
++ sudo ln -s /etc/puppet/nodes-rest-extract.pp /etc/puppet/manifests/site.pp
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson6016176352860110075.sh
++ ssh -i /as/ami.pem ami@10.1.134.144 'sudo puppet agent --test'
+[0;32mInfo: Retrieving pluginfacts[0m
+[0;32mInfo: Retrieving plugin[0m
+[0;32mInfo: Caching catalog for ip-10-1-134-144.ec2.internal[0m
+[0;32mInfo: Applying configuration version '1407671021'[0m
+[mNotice: /Stage[main]/Rest-extract/File[extract.war]/ensure: defined content as '{md5}e8f49ee68f163fa7ff64cf4ce1170812'[0m
+[mNotice: /Stage[main]/Rest-extract/Exec[restart_tomcat]/returns: Stopping tomcat6: [FAILED][0m
+[mNotice: /Stage[main]/Rest-extract/Exec[restart_tomcat]/returns: Starting tomcat6: [FAILED][0m
+[1;31mError: /etc/init.d/tomcat6 restart returned 4 instead of one of [0][0m
+[1;31mError: /Stage[main]/Rest-extract/Exec[restart_tomcat]/returns: change from notrun to 0 failed: /etc/init.d/tomcat6 restart returned 4 instead of one of [0][0m
+[mNotice: Finished catalog run in 6.88 seconds[0m
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

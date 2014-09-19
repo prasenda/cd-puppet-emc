@@ -1,0 +1,21 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /root/.jenkins/jobs/deploy-rest-extract/workspace
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson5027465189680692455.sh
++ sudo rm -f /etc/puppet/manifests/site.pp
++ sudo ln -s /etc/puppet/nodes-rest-extract.pp /etc/puppet/manifests/site.pp
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson9182224299400433931.sh
++ ssh -i /as/ami.pem ami@10.1.134.144 'sudo puppet agent --test'
+[0;32mInfo: Retrieving pluginfacts[0m
+[0;32mInfo: Retrieving plugin[0m
+[0;32mInfo: Caching catalog for ip-10-1-134-144.ec2.internal[0m
+[0;32mInfo: Applying configuration version '1407674779'[0m
+[1;31mError: Could not set 'file' on ensure: cannot generate tempfile `/usr/share/tomcat6/webapps/extract.war20140810-14183-93hnti-9' at 22:/etc/puppet/modules/rest-extract/manifests/init.pp[0m
+[1;31mError: Could not set 'file' on ensure: cannot generate tempfile `/usr/share/tomcat6/webapps/extract.war20140810-14183-93hnti-9' at 22:/etc/puppet/modules/rest-extract/manifests/init.pp
+Wrapped exception:
+cannot generate tempfile `/usr/share/tomcat6/webapps/extract.war20140810-14183-93hnti-9'[0m
+[1;31mError: /Stage[main]/Rest-extract/File[extract.war]/ensure: change from absent to file failed: Could not set 'file' on ensure: cannot generate tempfile `/usr/share/tomcat6/webapps/extract.war20140810-14183-93hnti-9' at 22:/etc/puppet/modules/rest-extract/manifests/init.pp[0m
+[mNotice: /Stage[main]/Rest-extract/Exec[restart_tomcat]: Dependency File[extract.war] has failures: true[0m
+[1;31mWarning: /Stage[main]/Rest-extract/Exec[restart_tomcat]: Skipping because of failed dependencies[0m
+[mNotice: Finished catalog run in 0.35 seconds[0m
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

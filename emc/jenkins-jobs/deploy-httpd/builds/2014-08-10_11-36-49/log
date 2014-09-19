@@ -1,0 +1,19 @@
+Started by upstream project "[8mha:AAAAnx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgZh/az8JP2C0oKC1BLd3MTiktQifQCINJFQyAAAAA==[0mpuppet-master" build number [8mha:AAAAoR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAymEgZR/az8JP2C0oKC1BLd3MTiktQifUMjADXHFw3KAAAA[0m12
+originally caused by:
+ Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /root/.jenkins/jobs/deploy-httpd/workspace
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson3685402917073577457.sh
++ sudo sleep 10
++ sudo rm -f /etc/puppet/manifests/site.pp
++ sudo ln -s /etc/puppet/nodes-httpd.pp /etc/puppet/manifests/site.pp
++ ssh -i /as/ami.pem ami@10.1.134.144 'sudo puppet agent --test ; exit 0'
+[0;32mInfo: Retrieving pluginfacts[0m
+[0;32mInfo: Retrieving plugin[0m
+[0;32mInfo: Caching catalog for ip-10-1-134-144.ec2.internal[0m
+[0;32mInfo: Applying configuration version '1407670624'[0m
+[mNotice: /Stage[main]/Httpd/Exec[yum-localinstall-httpd]/returns: executed successfully[0m
+[mNotice: /Stage[main]/Httpd/Exec[restart-httpd]/returns: executed successfully[0m
+[mNotice: /Stage[main]/Httpd/Exec[yum-localinstall-mod_ssl]/returns: executed successfully[0m
+[mNotice: Finished catalog run in 3.56 seconds[0m
+Triggering a new build of [8mha:AAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAweoBn6WflJ+impBTn5lbq5lcWFOfoA0He5gscAAAA=[0mdeploy-mysql #15
+Finished: SUCCESS

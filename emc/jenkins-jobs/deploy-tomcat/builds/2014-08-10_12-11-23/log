@@ -1,0 +1,62 @@
+Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /root/.jenkins/jobs/deploy-tomcat/workspace
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson3107441509379481925.sh
++ sudo sleep 10
++ sudo rm -f /etc/puppet/manifests/site.pp
++ sudo ln -s /etc/puppet/nodes-tomcat.pp /etc/puppet/manifests/site.pp
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson6008505401753812008.sh
++ ssh -i /as/ami.pem ami@10.1.134.144 'sudo puppet agent --test; exit 0'
+[0;32mInfo: Retrieving pluginfacts[0m
+[0;32mInfo: Retrieving plugin[0m
+[0;32mInfo: Caching catalog for ip-10-1-134-144.ec2.internal[0m
+[1;31mWarning: The package type's allow_virtual parameter will be changing its default value from false to true in a future release. If you do not want to allow virtual packages, please explicitly set allow_virtual to false.
+   (at /usr/lib/ruby/site_ruby/1.8/puppet/type.rb:816:in `set_default')[0m
+[0;32mInfo: Applying configuration version '1407672171'[0m
+[mNotice: /Stage[main]/Tomcat6/Package[tomcat6]/ensure: created[0m
+[mNotice: /Stage[main]/Tomcat6/File[tomcat_conf]/content: 
+--- /usr/share/tomcat6/conf/tomcat6.conf	2013-03-11 22:49:02.000000000 +0000
++++ /tmp/puppet-file20140810-2401-s0p5g2-0	2014-08-10 12:11:40.000000000 +0000
+@@ -9,7 +9,7 @@
+ #
+ 
+ # Where your java installation lives
+-#JAVA_HOME="/usr/lib/jvm/java-1.5.0"
++#JAVA_HOME="/usr/lib/jvm/java"
+ 
+ # Where your tomcat installation lives
+ CATALINA_BASE="/usr/share/tomcat6"
+@@ -19,14 +19,13 @@
+ 
+ # You can pass some parameters to java here if you wish to
+ #JAVA_OPTS="-Xminf0.1 -Xmaxf0.3"
++JAVA_OPTS="-Xms2G -Xmx2G -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=true"
+ 
+ # Use JAVA_OPTS to set java.library.path for libtcnative.so
+-#JAVA_OPTS="-Djava.library.path=/usr/lib"
++#JAVA_OPTS="-Djava.library.path=/usr/lib64"
+ 
+-# Cannot resolve user database reference - naming-factory-dbcp
+-# the real problem is a cnfe that is avoided by configuring
+-# the -Djavax.sql.DataSource.Factory. This fixes the rpm install.
+-JAVA_OPTS="${JAVA_OPTS} -Djavax.sql.DataSource.Factory=org.apache.commons.dbcp.BasicDataSourceFactory"
++# CATALINA OPTS
++CATALINA_OPTS="-Dcom.sun.management.jmxremote.port=9876"
+ 
+ # What user should run tomcat
+ TOMCAT_USER="tomcat"
+@@ -41,7 +40,7 @@
+ SHUTDOWN_WAIT="30"
+ 
+ # Whether to annoy the user with "attempting to shut down" messages or not
+-SHUTDOWN_VERBOSE=false
++SHUTDOWN_VERBOSE="false"
+ 
+ # Set the TOMCAT_PID location
+ CATALINA_PID="/var/run/tomcat6.pid"
+[0m
+[0;32mInfo: FileBucket got a duplicate file {md5}ae3f31716794d223d34ef10de6b04b87[0m
+[0;32mInfo: /Stage[main]/Tomcat6/File[tomcat_conf]: Filebucketed /usr/share/tomcat6/conf/tomcat6.conf to puppet with sum ae3f31716794d223d34ef10de6b04b87[0m
+[mNotice: /Stage[main]/Tomcat6/File[tomcat_conf]/content: content changed '{md5}ae3f31716794d223d34ef10de6b04b87' to '{md5}bdd5b93743cbe5d6a05522436674bb5a'[0m
+[mNotice: Finished catalog run in 2.71 seconds[0m
+Triggering a new build of [8mha:AAAApR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzhEgZJ/az8JP2U1IKc/ErdotTiEt3UipKixOQSfQD+o1TvzgAAAA==[0mdeploy-rest-extract #10
+Finished: SUCCESS

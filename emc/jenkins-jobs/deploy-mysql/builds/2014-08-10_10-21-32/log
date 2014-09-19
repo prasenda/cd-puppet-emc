@@ -1,0 +1,22 @@
+Started by upstream project "[8mha:AAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAweoBn6WflJ+impBTn5lboZJSUFKfoAVPoofscAAAA=[0mdeploy-httpd" build number [8mha:AAAAnh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBmH9rPwk/ZTUgpz8St2MkpKCFH1LALXpjh/IAAAA[0m9
+originally caused by:
+ Started by upstream project "[8mha:AAAAnx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgZh/az8JP2C0oKC1BLd3MTiktQifQCINJFQyAAAAA==[0mpuppet-master" build number [8mha:AAAAnx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBhH9rPwk/YLSgoLUEt3cxOKS1CJ9cwAd9GBbyQAAAA==[0m7
+ originally caused by:
+  Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /root/.jenkins/jobs/deploy-mysql/workspace
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson3644969523260383540.sh
++ sudo rm -f /etc/puppet/manifests/site.pp
++ sudo ln -s /etc/puppet/nodes-mysql.pp /etc/puppet/manifests/site.pp
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson6441799528478073618.sh
++ ssh -i /as/ami.pem ami@10.1.134.144 'sudo puppet agent --test'
+[0;32mInfo: Retrieving pluginfacts[0m
+[0;32mInfo: Retrieving plugin[0m
+[0;32mInfo: Caching catalog for ip-10-1-134-144.ec2.internal[0m
+[0;32mInfo: Applying configuration version '1407666083'[0m
+[mNotice: /Stage[main]/Httpd/Exec[yum-localinstall-httpd]/returns: executed successfully[0m
+[mNotice: /Stage[main]/Httpd/Exec[restart-httpd]/returns: executed successfully[0m
+[mNotice: /Stage[main]/Httpd/Exec[yum-localinstall-mod_ssl]/returns: executed successfully[0m
+[mNotice: Finished catalog run in 3.38 seconds[0m
+Build step 'Execute shell' marked build as failure
+Triggering a new build of [8mha:AAAAnx+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzeEgZh/az8JP2U1IKc/Erdkvzc5MQSfQBF8QhSyAAAAA==[0mdeploy-tomcat #2
+Finished: FAILURE

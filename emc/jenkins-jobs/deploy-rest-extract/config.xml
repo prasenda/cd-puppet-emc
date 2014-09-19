@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>start the puppet master and make it ready for the deployment.</description>
+  <description>deploy rest extract</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
@@ -18,7 +18,7 @@ sudo ln -s /etc/puppet/nodes-rest-extract.pp /etc/puppet/manifests/site.pp
 </command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
-      <command>ssh -i /as/ami.pem ami@10.1.134.144 &quot;sudo /etc/init.d/puppet restart&quot;</command>
+      <command>ssh -i /as/ami.pem ami@10.1.134.144 &quot;sudo puppet agent --test&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>

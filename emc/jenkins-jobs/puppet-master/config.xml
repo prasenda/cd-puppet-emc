@@ -3,7 +3,17 @@
   <actions/>
   <description>start the puppet master and make it ready for the deployment.</description>
   <keepDependencies>false</keepDependencies>
-  <properties/>
+  <properties>
+    <hudson.model.ParametersDefinitionProperty>
+      <parameterDefinitions>
+        <hudson.model.StringParameterDefinition>
+          <name>PUPPET_CLIENT_IP</name>
+          <description>This is the puppet client, where all our application will be installed.</description>
+          <defaultValue>10.1.134.144</defaultValue>
+        </hudson.model.StringParameterDefinition>
+      </parameterDefinitions>
+    </hudson.model.ParametersDefinitionProperty>
+  </properties>
   <scm class="hudson.scm.NullSCM"/>
   <canRoam>true</canRoam>
   <disabled>false</disabled>
@@ -13,12 +23,18 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>/etc/init.d/puppet restart</command>
+      <command>sudo puppet master --verbose --daemonize</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>#this is required if client does not have puppet installed and configured
+#ssh -i /as/ami.pem ami@$PUPPET_CLIENT_IP &quot;sudo rpm -ivh http://yum.puppetlabs.com/puppetlabs-release-el-5.noarch.rpm&quot;
+#ssh -i /as/ami.pem ami@$PUPPET_CLIENT_IP &quot;sudo yum -y install puppet;sudo echo &apos;10.1.135.61 puppet&apos; &gt;&gt; /etc/hosts&quot;
+#ssh -i /as/ami.pem ami@$PUPPET_CLIENT_IP &quot;sudo puppet agent --test; exit 0&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.BuildTrigger>
-      <childProjects>deploy-mysql</childProjects>
+      <childProjects>deploy-httpd</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

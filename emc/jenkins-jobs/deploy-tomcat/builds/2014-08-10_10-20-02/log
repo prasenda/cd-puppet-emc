@@ -1,0 +1,24 @@
+Started by upstream project "[8mha:AAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAweoBn6WflJ+impBTn5lbq5lcWFOfoA0He5gscAAAA=[0mdeploy-mysql" build number [8mha:AAAAnh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBmH9rPwk/ZTUgpz8St3cyuLCHH0zAJAiGGXIAAAA[0m6
+originally caused by:
+ Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /root/.jenkins/jobs/deploy-tomcat/workspace
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson3907147583164058196.sh
++ sudo rm -f /etc/puppet/manifests/site.pp
++ sudo ln -s /etc/puppet/nodes-tomcat.pp /etc/puppet/manifests/site.pp
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson1331483266264695318.sh
++ ssh -i /as/ami.pem ami@10.1.134.144 'puppet agent --test'
+[0;32mInfo: Creating a new SSL key for ip-10-1-134-144.ec2.internal[0m
+[0;32mInfo: Caching certificate for ca[0m
+[0;32mInfo: Caching certificate for ip-10-1-134-144.ec2.internal[0m
+[1;31mError: Could not request certificate: The certificate retrieved from the master does not match the agent's private key.
+Certificate fingerprint: DE:34:01:82:75:FB:04:93:AB:49:DD:0A:0C:DC:15:E1:32:2E:47:26:89:76:DC:81:F9:10:31:E3:D6:18:CF:97
+To fix this, remove the certificate from both the master and the agent and then start a puppet run, which will automatically regenerate a certficate.
+On the master:
+  puppet cert clean ip-10-1-134-144.ec2.internal
+On the agent:
+  rm -f /home/ami/.puppet/ssl/certs/ip-10-1-134-144.ec2.internal.pem
+  puppet agent -t
+[0m
+Exiting; failed to retrieve certificate and waitforcert is disabled
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE

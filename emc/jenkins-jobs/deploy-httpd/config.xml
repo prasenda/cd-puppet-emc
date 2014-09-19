@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project>
   <actions/>
-  <description>start the puppet master and make it ready for the deployment.</description>
+  <description>deploy httpd server</description>
   <keepDependencies>false</keepDependencies>
   <properties/>
   <scm class="hudson.scm.NullSCM"/>
@@ -13,17 +13,16 @@
   <concurrentBuild>false</concurrentBuild>
   <builders>
     <hudson.tasks.Shell>
-      <command>sudo rm -f /etc/puppet/manifests/site.pp ; 
+      <command>sudo sleep 10 ;
+sudo rm -f /etc/puppet/manifests/site.pp ;
 sudo ln -s /etc/puppet/nodes-httpd.pp /etc/puppet/manifests/site.pp
+ssh -i /as/ami.pem ami@10.1.134.144 &quot;sudo puppet agent --test ; exit 0&quot;
 </command>
-    </hudson.tasks.Shell>
-    <hudson.tasks.Shell>
-      <command>ssh -i /as/ami.pem ami@10.1.134.144 &quot;sudo /etc/init.d/puppet restart&quot;</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers>
     <hudson.tasks.BuildTrigger>
-      <childProjects>deploy-tomcat</childProjects>
+      <childProjects>deploy-mysql</childProjects>
       <threshold>
         <name>SUCCESS</name>
         <ordinal>0</ordinal>

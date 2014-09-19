@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<build>
+  <actions>
+    <hudson.model.CauseAction>
+      <causes>
+        <hudson.model.Cause_-UpstreamCause>
+          <upstreamProject>deploy-tomcat</upstreamProject>
+          <upstreamUrl>job/deploy-tomcat/</upstreamUrl>
+          <upstreamBuild>15</upstreamBuild>
+          <upstreamCauses>
+            <hudson.model.Cause_-UserIdCause/>
+          </upstreamCauses>
+        </hudson.model.Cause_-UpstreamCause>
+      </causes>
+    </hudson.model.CauseAction>
+  </actions>
+  <number>12</number>
+  <startTime>1407673803857</startTime>
+  <result>SUCCESS</result>
+  <duration>6292</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/root/.jenkins/jobs/deploy-rest-extract/workspace</workspace>
+  <hudsonVersion>1.527</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+</build>

@@ -1,0 +1,41 @@
+Started by upstream project "[8mha:AAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAweoBn6WflJ+impBTn5lbq5lcWFOfoA0He5gscAAAA=[0mdeploy-mysql" build number [8mha:AAAAoB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAymEgYR/az8JP2U1IKc/Erd3Mriwhx9QxMA6SlkfckAAAA=[0m14
+originally caused by:
+ Started by user [8mha:AAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAzOEgYu/dLi1CL9vNKcHACFIKlWvwAAAA==[0manonymous
+Building in workspace /root/.jenkins/jobs/deploy-tomcat/workspace
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson5960935073647956899.sh
++ sudo rm -f /etc/puppet/manifests/site.pp
++ sudo ln -s /etc/puppet/nodes-tomcat.pp /etc/puppet/manifests/site.pp
+[workspace] $ /bin/sh -xe /var/hudson/container/apache-tomcat-7.0.20/temp/hudson9036736807432985887.sh
++ ssh -i /as/ami.pem ami@10.1.134.144 'sudo puppet agent --test'
+[0;32mInfo: Retrieving pluginfacts[0m
+[0;32mInfo: Retrieving plugin[0m
+[0;32mInfo: Caching catalog for ip-10-1-134-144.ec2.internal[0m
+[0;32mInfo: Applying configuration version '1407669707'[0m
+[mNotice: /Stage[main]/Mysql-dc::Mysql-server/Mysql-dc::Mysql-server::Install_mysql_server[install_mysql_server]/File[/etc/my.cnf.dc]/ensure: defined content as '{md5}ec4b68955e5a0bdf1cb2716c5cc3bff3'[0m
+[0;32mInfo: /Stage[main]/Mysql-dc::Mysql-server/Mysql-dc::Mysql-server::Install_mysql_server[install_mysql_server]/File[/etc/my.cnf.dc]: Scheduling refresh of Exec[dc-mysql-restart-required][0m
+[mNotice: /Stage[main]/Mysql-dc::Mysql-server/Exec[mysql-dc-init.d]/returns: /bin/mv: cannot stat `/usr/sbin/mysqld': No such file or directory[0m
+[1;31mError: /bin/mv /usr/sbin/mysqld /etc/init.d/mysql-dc returned 1 instead of one of [0][0m
+[1;31mError: /Stage[main]/Mysql-dc::Mysql-server/Exec[mysql-dc-init.d]/returns: change from notrun to 0 failed: /bin/mv /usr/sbin/mysqld /etc/init.d/mysql-dc returned 1 instead of one of [0][0m
+[mNotice: /Stage[main]/Mysql-dc::Mysql-server/Exec[dc-mysql-restart-required]: Triggered 'refresh' from 1 events[0m
+[0;32mInfo: /Stage[main]/Mysql-dc::Mysql-server/Exec[dc-mysql-restart-required]: Scheduling refresh of Service[mysql-dc][0m
+[1;31mError: Could not start Service[mysql-dc]: Execution of '/sbin/service mysql-dc start' returned 1: 140810 11:22:01 [ERROR] Fatal error: Please read "Security" section of the manual to find out how to run mysqld as root!
+
+140810 11:22:01 [ERROR] Aborting
+
+140810 11:22:01 [Note] /etc/init.d/mysql-dc: Shutdown complete
+Wrapped exception:
+Execution of '/sbin/service mysql-dc start' returned 1: 140810 11:22:01 [ERROR] Fatal error: Please read "Security" section of the manual to find out how to run mysqld as root!
+
+140810 11:22:01 [ERROR] Aborting
+
+140810 11:22:01 [Note] /etc/init.d/mysql-dc: Shutdown complete[0m
+[1;31mError: /Stage[main]/Mysql-dc::Mysql-server/Service[mysql-dc]/ensure: change from stopped to running failed: Could not start Service[mysql-dc]: Execution of '/sbin/service mysql-dc start' returned 1: 140810 11:22:01 [ERROR] Fatal error: Please read "Security" section of the manual to find out how to run mysqld as root!
+
+140810 11:22:01 [ERROR] Aborting
+
+140810 11:22:01 [Note] /etc/init.d/mysql-dc: Shutdown complete[0m
+[mNotice: /Stage[main]/Mysql-dc::Mysql-server/Service[mysql-dc]: Triggered 'refresh' from 1 events[0m
+[mNotice: /Stage[main]/Mysql-dc::Mysql-server/Mysql-dc::Mysql-server::Install_mysql_server[install_mysql_server]/Exec[my-cnf-dc]/returns: executed successfully[0m
+[mNotice: Finished catalog run in 2.38 seconds[0m
+Build step 'Execute shell' marked build as failure
+Finished: FAILURE
