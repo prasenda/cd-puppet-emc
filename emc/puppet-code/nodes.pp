@@ -1,7 +1,7 @@
-# edit this file
+# edit this file to fit your network and service
 
 node deployment-param  {
-    $tomcat-install-path = "/opt/"
+    $tomcat_install_path = "/opt/"
     $modulename = "mysql-dc"
     $mysql_version = "5.1.50-1"
     $mysql_server_port = "3306"
@@ -11,9 +11,9 @@ node deployment-param  {
 }
 
 node 'ip-10-1-134-144.ec2.internal' inherits  deployment-param {
-    include mysql-dc::mysql-server
-    include tomcat6
-    include rest-extract 
+    #include mysql-dc::mysql-server
+    #include tomcat6
+    #include rest-extract 
     include httpd
 }
 

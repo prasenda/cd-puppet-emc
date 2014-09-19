@@ -9,7 +9,7 @@ class mysql-dc::mysql-server {
 
     # $mysql_version = "5.1.50-1"
     $mysql_server_rpm = "MySQL-server-${mysql_version}.glibc23.x86_64.rpm"
-    $password = "yourpassword-for-mysql"
+    $password = "nokia123"
 
     file { "/tmp/$mysql_server_rpm":
         source => "puppet:///modules/$modulename/$mysql_server_rpm"
@@ -55,17 +55,17 @@ class mysql-dc::mysql-server {
     }
 
     exec { "mysql-dc-init.d":
-        command => "/bin/mv /etc/init.d/mysql /etc/init.d/mysql-dc",
+        command => "/bin/mv /usr/sbin/mysqld /etc/init.d/mysql-dc",
         subscribe => Exec["MySQL-server"] 
     }
 
-    exec { "set-mysql-pw":
-        subscribe => [ Exec["MySQL-server"] ],
-        refreshonly => true,
-        unless => "mysqladmin -uroot -p$password status",
-        path => "/bin:/usr/bin",
-        command => "mysqladmin -uroot password $password",
-    }
+#    exec { "set-mysql-pw":
+#        subscribe => [ Exec["MySQL-server"] ],
+#        refreshonly => true,
+#        unless => "mysqladmin -uroot -p$password status",
+#        path => "/bin:/usr/bin",
+#        command => "mysqladmin -uroot password $password",
+#    }
 
     service { "mysql-dc" :
         name => "mysql-dc",

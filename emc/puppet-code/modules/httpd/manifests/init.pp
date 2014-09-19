@@ -17,13 +17,13 @@ class httpd {
     }
 
     exec { "yum-localinstall-httpd":
-        command => "/usr/bin/yum localinstall -y /tmp/httpd-${httpd_version}",
+        command => "/usr/bin/yum localinstall --skip-broken -y /tmp/httpd-${httpd_version}",
         unless  => "/bin/rpm -q httpd-${httpd_version}",
         require => file["httpd-rpm"],
     }
 
     exec { "yum-localinstall-mod_ssl":
-        command => "/usr/bin/yum localinstall -y /tmp/mod_ssl-${mod_ssl_version}",
+        command => "/usr/bin/yum localinstall --skip-broken -y /tmp/mod_ssl-${mod_ssl_version}",
         unless  => "/bin/rpm -q mod_ssl-${mod_ssl_version}",
         require => file["mod_ssl-rpm"],
     }
@@ -33,9 +33,14 @@ class httpd {
         require => Exec["yum-localinstall-httpd", "yum-localinstall-mod_ssl"],
     }
 
-    file { "/etc/httpd/conf/httpd.conf":
-        ensure => file,
-        content => template("httpd/httpd.conf.erb"),
-        require => File["/etc/httpd/conf.d"],
-    }
+#    file { "/etc/httpd/conf/httpd.conf":
+#        ensure => file,
+#        content => template("httpd/httpd.conf.erb"),
+#        require => File["/etc/httpd/conf.d"],
+#    }
+    exec { "restart-httpd":
+        command => "/sbin/service httpd restart",
+        unless  => "/bin/rpm -q httpd-${httpd_version}",
+#        require => file["/etc/httpd/conf/httpd.conf"],
+   }
 }

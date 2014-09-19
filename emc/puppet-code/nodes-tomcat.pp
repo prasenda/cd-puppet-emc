@@ -1,7 +1,7 @@
 # edit this file to fit your network and service
 
 node deployment-param  {
-    $tomcat-install-path = "/opt/"
+    $tomcat_install_path = "/opt/"
     $modulename = "mysql-dc"
     $mysql_version = "5.1.50-1"
     $mysql_server_port = "3306"
